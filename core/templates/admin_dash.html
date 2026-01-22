@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>管理者用ダッシュボード</h2>
+    <a href="{% url 'add_equipment' %}" class="btn btn-success">＋ 備品を追加</a>
+</div>
+
+<div class="card border-0 rounded-4 mb-3 admin-section-title">
+    <div class="card-body py-3 px-4 d-flex align-items-center">
+        <i class="bi bi-box-seam-fill text-info fs-4 me-3"></i>
+        <h4 class="mb-0 fw-bold text-white">
+            倉庫内備品一覧
+        </h4>
+    </div>
+</div>
+
+<table class="table table-hover bg-white shadow-sm">
+    <thead class="table-dark">
+        <tr>
+            <th>名称</th>
+            <th>シリアル番号</th>
+            <th>状態</th>
+            <th>操作</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.serial }}</td>
+            <td><span class="badge {% if item.status == 'available' %}bg-success{% else %}bg-danger{% endif %}">{{ item.get_status_display }}</span></td>
+            <td>
+                <a href="#" class="btn btn-sm btn-warning">直す</a>
+                <a href="{% url 'delete_equipment' item.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('削除してもよろしいですか？')">削除</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="card border-0 rounded-4 mb-3 admin-section-title">
+    <div class="card-body py-3 px-4 d-flex align-items-center">
+        <i class="bi bi-bell-fill text-warning fs-4 me-3"></i>
+        <h4 class="mb-0 fw-bold text-white">
+            備品貸出申請一覧
+        </h4>
+    </div>
+</div>
+
+<div class="card shadow-sm border-0 rounded-4 mt-3 mb-5">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-4 py-3">申請者</th>
+                        <th class="py-3">備品名</th>
+                        <th class="py-3">申請日</th>
+                        <th class="py-3">申請状況</th>
+                        <th class="py-3 text-center">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for req in requests %}
+                    <tr class="align-middle">
+                        <td class="ps-4">
+                            {% if item.image %}
+                                <!-- Nếu có ảnh: Hiển thị ảnh từ thư mục media -->
+                                <img src="{{ item.image.url }}" 
+                                    alt="{{ item.name }}" 
+                                    style="width: 50px; height: 50px; object-fit: cover;" 
+                                    class="rounded border shadow-sm">
+                            {% else %}
+                                <!-- Nếu không có ảnh: Hiển thị một icon hoặc chữ thay thế -->
+                                <div class="bg-light rounded d-flex align-items-center justify-content-center border" 
+                                    style="width: 50px; height: 50px;">
+                                    <i class="text-muted small" style="font-size: 8px;">No Image</i>
+                                </div>
+                            {% endif %}
+                        </td>
+                        <td>{{ req.equipment.name }}</td>
+                        <td><small class="text-muted">{{ req.date_requested|date:"H:i - d/m/Y" }}</small></td>
+                        <td>
+                            {% if req.status == 'pending' %}
+                                <span class="badge bg-warning text-dark rounded-pill">承認待ち</span>
+                            {% elif req.status == 'approved' %}
+                                <span class="badge bg-success rounded-pill">承認済み</span>
+                            {% else %}
+                                <span class="badge bg-danger rounded-pill">却下</span>
+                            {% endif %}
+                        </td>
+
+                        <td class="text-center">
+                            {% if req.status == 'pending' %}
+                                <a href="{% url 'approve_request' req.pk %}" class="btn btn-sm btn-success rounded-pill px-3">
+                                    貸出を承認
+                                </a>
+                                <a href="{% url 'reject_request' req.pk %}" class="btn btn-sm btn-outline-danger rounded-pill px-3 ms-1">
+                                    却下
+                                </a>
+                            
+                            {% elif req.status == 'approved' %}
+                                <!-- 管理者用：返却確認ボタン -->
+                                <a href="{% url 'return_item' req.pk %}" class="btn btn-sm btn-info text-white rounded-pill px-3">
+                                    <i class="bi bi-arrow-return-left"></i>
+                                    返却を確認
+                                </a>
+                            
+                            {% else %}
+                                <span class="text-muted small">
+                                    完了
+                                </span>
+                            {% endif %}
+                        </td>
+
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center py-5 text-muted">
+                            <i class="bi bi-inbox d-block mb-2" style="font-size: 2rem;"></i>
+                            現在、貸出申請はありません。
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<style>
+.admin-section-title {
+    background: linear-gradient(
+        135deg,
+        rgba(120, 20, 20, 0.9),
+        rgba(60, 10, 10, 0.9)
+    );
+    box-shadow: 0 10px 25px rgba(255, 77, 77, 0.25);
+}
+</style>
+
+{% endblock %}

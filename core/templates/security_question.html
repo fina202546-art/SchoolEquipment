@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="card border-0 shadow-lg rounded-4 border-start border-warning border-5">
+            <div class="card-body p-5 text-center">
+                <div class="mb-4">
+                    <i class="bi bi-shield-lock text-warning" style="font-size: 3rem;"></i>
+                </div>
+                <h2 class="fw-bold text-dark">管理者認証</h2>
+                <p class="text-muted mb-4">
+                    管理者権限の登録を行うため、以下の質問にお答えください。
+                </p>
+                
+                <h4 class="bg-light py-3 border rounded mb-4 italic">
+                    「NIIGATAで一番ハンサムなのは誰ですか？」
+                </h4>
+
+                {% if error %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="text" name="answer"
+                           class="form-control form-control-lg text-center mb-3"
+                           placeholder="回答を入力してください"
+                           autofocus>
+                    <button type="submit" class="btn btn-warning btn-lg w-100 fw-bold">
+                        登録を確定
+                    </button>
+                </form>
+                <a href="{% url 'register' %}" class="btn btn-link mt-3 text-muted text-decoration-none">
+                    ← 戻る
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

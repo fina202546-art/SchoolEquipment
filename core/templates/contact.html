@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+
+    <!-- HEADER -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-white mb-1">
+            お問い合わせ
+        </h2>
+        <p class="text-white-50 small">
+            サポート・設備管理窓口
+        </p>
+    </div>
+
+    <div class="row g-5 align-items-stretch">
+
+        <!-- LEFT -->
+        <div class="col-md-7 d-flex flex-column gap-4">
+
+            <div class="info-box">
+                <i class="bi bi-geo-alt-fill text-danger"></i>
+                <div>
+                    <div class="title">所在地</div>
+                    <div class="desc">新潟専門学校・設備管理室（1階）</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <i class="bi bi-telephone-fill text-success"></i>
+                <div>
+                    <div class="title">電話番号</div>
+                    <div class="desc">012-3456-7890（平日）</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <i class="bi bi-envelope-fill text-primary"></i>
+                <div>
+                    <div class="title">メールアドレス</div>
+                    <div class="desc">support@niigata-school.jp</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="col-md-5 d-flex align-items-center justify-content-center">
+
+            <div class="teacher-card text-center p-4">
+                <img src="/media/inu.jpg"
+                     alt="PHAP先生"
+                     class="teacher-photo mb-3">
+
+                <h5 class="text-white mb-1">
+                    PHAP先生
+                </h5>
+                <p class="text-white-50 small mb-3">
+                    設備管理担当 🐾
+                </p>
+
+                <span class="teacher-badge">
+                    お気軽にご相談ください
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- LOCAL STYLE -->
+<style>
+.info-box {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    padding: 22px 26px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.06);
+    transition: all 0.3s ease;
+}
+
+.info-box:hover {
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-3px);
+}
+
+.info-box i {
+    font-size: 1.6rem;
+}
+
+.info-box .title {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.info-box .desc {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+}
+
+.teacher-card {
+    background: rgba(0,0,0,0.35);
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+
+.teacher-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255,255,255,0.2);
+}
+
+.teacher-badge {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    font-size: 0.85rem;
+}
+</style>
+{% endblock %}

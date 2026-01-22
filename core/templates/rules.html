@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container py-5">
+
+    <h2 class="fw-bold text-white mb-5 text-center">
+        <i class="bi bi-journal-check text-warning me-2"></i>
+        貸出しガイドライン・利用規則
+    </h2>
+
+    <!-- ===== 基本利用情報 ===== -->
+    <h5 class="text-uppercase text-white-50 mb-3">
+        基本利用情報
+    </h5>
+
+    <div class="row g-4">
+
+        <!-- 貸出し手続き -->
+        <div class="col-md-6">
+            <div class="card h-100 border-0 rounded-4 p-4 rule-card">
+                <h5 class="fw-bold text-white mb-3">
+                    <i class="bi bi-clipboard-check text-info me-2"></i>
+                    貸出し手続き
+                </h5>
+                <ul class="text-white-50 mb-0">
+                    <li>アカウント登録・ログイン</li>
+                    <li>設備を選択し申請</li>
+                    <li>管理者の承認を待つ</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 利用対象・条件 -->
+        <div class="col-md-6">
+            <div class="card h-100 border-0 rounded-4 p-4 rule-card">
+                <h5 class="fw-bold text-white mb-3">
+                    <i class="bi bi-person-check text-success me-2"></i>
+                    利用対象・条件
+                </h5>
+                <ul class="text-white-50 mb-0">
+                    <li>在籍中の学生・教職員</li>
+                    <li>ログイン済みユーザーのみ利用可能</li>
+                    <li>授業目的での使用を優先</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== 注意事項・サポート ===== -->
+    <h5 class="text-uppercase text-white-50 mt-5 mb-3">
+        注意事項・サポート
+    </h5>
+
+    <div class="row g-4">
+
+        <!-- 取扱い・管理規則 -->
+        <div class="col-md-6">
+            <div class="card h-100 border-0 rounded-4 p-4 rule-card">
+                <h5 class="fw-bold text-white mb-3">
+                    <i class="bi bi-shield-exclamation text-danger me-2"></i>
+                    取扱い・管理規則
+                </h5>
+                <ul class="text-white-50 mb-0">
+                    <li>破損・改造は禁止</li>
+                    <li>期限内に必ず返却</li>
+                    <li>破損時は速やかに報告</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- よくある質問 -->
+        <div class="col-md-6">
+            <div class="card h-100 border-0 rounded-4 p-4 rule-card">
+                <h5 class="fw-bold text-white mb-3">
+                    <i class="bi bi-question-circle text-primary me-2"></i>
+                    よくある質問
+                </h5>
+                <ul class="text-white-50 mb-0">
+                    <li>当日の貸出しは可能ですか？</li>
+                    <li>貸出期間の延長はできますか？</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- このページ専用スタイル -->
+<style>
+.rule-card {
+    background-color: rgba(61, 46, 46, 0.75);
+    transition: all 0.3s ease;
+}
+
+.rule-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(255, 77, 77, 0.25);
+}
+</style>
+
+{% endblock %}

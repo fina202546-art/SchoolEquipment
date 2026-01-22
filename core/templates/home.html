@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="py-5 text-center">
+
+    <!-- Заголовок -->
+    <h1 class="fw-bold mb-2" style="color:#ffd6d6;">
+        フォーム情報アカデミー専門学校
+    </h1>
+    <p class="text-white-50 mb-5">
+        学校備品 管理システム
+    </p>
+
+    <!-- Карточки -->
+    <div class="row g-4 justify-content-center">
+
+        <!-- 検索 -->
+        <div class="col-md-4">
+            <a href="{% url 'home' %}" class="text-decoration-none">
+                <div class="card feature-card text-center p-4 h-100">
+                    <i class="bi bi-search text-primary fs-1 mb-3"></i>
+                    <h5 class="fw-bold text-white">簡単検索</h5>
+                    <small class="text-white-50">一覧表示</small>
+                </div>
+            </a>
+        </div>
+
+        <!-- 申請 -->
+        <div class="col-md-4">
+            <a href="{% url 'borrow_history' %}" class="text-decoration-none">
+                <div class="card feature-card text-center p-4 h-100">
+                    <i class="bi bi-pencil-square text-success fs-1 mb-3"></i>
+                    <h5 class="fw-bold text-white">即時申請</h5>
+                    <small class="text-white-50">ワンクリック</small>
+                </div>
+            </a>
+        </div>
+
+        <!-- 管理 -->
+        <div class="col-md-4">
+            <a href="{% url 'dashboard' %}" class="text-decoration-none">
+                <div class="card feature-card text-center p-4 h-100">
+                    <i class="bi bi-shield-check text-warning fs-1 mb-3"></i>
+                    <h5 class="fw-bold text-white">管理明確</h5>
+                    <small class="text-white-50">履歴確認</small>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    {% if not user.is_authenticated %}
+    <div class="mt-5">
+        <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-5 rounded-pill">
+            利用を開始する
+        </a>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

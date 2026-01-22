@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="card border-0 shadow-lg rounded-4">
+            <div class="card-header bg-primary text-white text-center py-4 rounded-top-4">
+                <h3 class="fw-bold mb-0">アカウント作成</h3>
+                <small>新潟 物品管理システム</small>
+            </div>
+            <div class="card-body p-5">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">ユーザー名</label>
+                        <input type="text" name="username" class="form-control form-control-lg" placeholder="ユーザー名を入力してください" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">メールアドレス</label>
+                        <input type="email" name="email" class="form-control form-control-lg" placeholder="email@example.com" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">パスワード</label>
+                        <input type="password" name="password" class="form-control form-control-lg" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">利用区分</label>
+                        <select name="role" class="form-select form-select-lg">
+                            <option value="student">学生（備品を借用）</option>
+                            <option value="admin">管理者（倉庫管理）</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill shadow-sm">
+                        登録する
+                    </button>
+                </form>
+            </div>
+            <div class="card-footer text-center bg-light py-3 rounded-bottom-4">
+                すでにアカウントをお持ちの方は
+                <a href="{% url 'login' %}" class="text-decoration-none">ログイン</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
